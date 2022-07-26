@@ -10,7 +10,7 @@ composer install
 ```
 Again from the root folder, create initial tables with:
 ```bash
-php ./cli/migrate.php
+php ./migrations/001_initial.php
 ```
 
 ## Start project
