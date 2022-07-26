@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    links:
+      - php
+    ports:
+      - 80:80
+  php:
+    build: ./docker/php
+    working_dir: /app
+    volumes:
+      - .:/app
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: guestbook
+    ports:
+      - 3306:3306
+
+volumes:
+  mysql:
